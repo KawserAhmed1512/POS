@@ -15,9 +15,10 @@ class OrderentryController extends Controller
     public function orderentry(){
 
         $products=product::all();
-        $myCart=season()->get('basket')??[];
+       
+        $myCart=session()->get('basket')??[];
 
-        return view('backend.orderentry',compact('product','myCart'));
+        return view('backend.orderentry',compact('products','myCart'));
 
         
     }
@@ -27,7 +28,7 @@ class OrderentryController extends Controller
 
         $singleProductlist=Product::find($id);
 
-        $relatedProduct=Product::where('id','!=',$singleProduct->id)
+        $relatedProduct=Product::where('id','!=','$singleProduct->id')
                         ->limit(4)
                         ->get();
 
@@ -39,7 +40,7 @@ class OrderentryController extends Controller
         
     }
 
-    public function addToCart($pid)
+    public function addToCart($pId)
 
     {
         
@@ -146,13 +147,13 @@ class OrderentryController extends Controller
 
     }
 
-    public function search()
-    {
-        $products=Product::where('name','LIKE','%'.request()->search_key.'%')->get();
+    // public function search()
+    // {
+    //     $products=Product::where('name','LIKE','%'.request()->search_key.'%')->get(); 
 
-        return view('backend.productentry',compact('products'));
+    //     return view('backend.productentry',compact('products'));
     
-    }
+    // }
 
 
 }

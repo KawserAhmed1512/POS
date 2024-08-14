@@ -89,7 +89,7 @@ Route::post('/product-store',[ProductController::class,'store'])->name('product.
 
 Route::get('/Stock',[StockController::class,'stock'])->name('Stock');
 
-Route::get('/search',[StockController::class,'search'])->name('search');
+
 
 //report
 

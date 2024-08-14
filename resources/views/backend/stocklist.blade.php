@@ -4,7 +4,7 @@
 
 
 <nav class="navbar navbar-light bg-light">
-  <form action="{{route('search')}}"class="form-inline">
+  <form action=""class="form-inline">
     <input name="search_key" value="{{request()->search_key}}" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>

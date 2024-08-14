@@ -21,12 +21,14 @@ class StockController extends Controller
 
 
 
-    public function search(){
+    // public function search(){
 
-      $products=Product::where('name','LIKE','%'.request()->search_key.'%')->get();
+    //   $products=Product::where('name','LIKE','%'.request()->search_key.'%')->get();
 
-      return view('backend.stocklist',compact('products'));
-    }
+    //   return view('backend.stocklist',compact('products'));
+  
+    
+
 
 
 
