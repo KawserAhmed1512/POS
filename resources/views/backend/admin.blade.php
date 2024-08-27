@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h1> Hi! I am Admin Panel </h1>
+<h1> habijabi </h1>
 
 @endsection 

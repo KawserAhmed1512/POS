@@ -21,8 +21,8 @@
       <th scope="col">Price</th>
       <th scope="col">Category Name</th>
 
+      <th scope="col">Quantity</th>
 
-      
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -40,14 +40,16 @@
      
       <td>{{$stock->name}}</td>
       <td>{{$stock->price}}</td>
+     
         <td>
     {{$stock->category->name}}
   </td>
+  <td>{{$stock->quantity}}</td>
   
 
 
   <td>
-        <a class="btn btn-success" href="">View</a>
+        
       <a class="btn btn-info" href="">Edit</a>
       <a class="btn btn-danger" href="">Delete</a>
     </td>

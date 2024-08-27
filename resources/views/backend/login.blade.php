@@ -284,12 +284,13 @@ input[type=text]:placeholder {
     </div>
 
     <!-- Login Form -->
-    <form action="{{route('do.login')}}" method="post">
+    <form action= method="post">
 
     @csrf
       <input type="text" class="fadeIn second" name="email" placeholder="login">
       <input type="password" class="fadeIn third" name="password" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="text" class="fadeIn third" name="role" placeholder="Roll">
+      <button type="submit" class="fadeIn fourth" value="Log In">Submit</button>
     </form>
 
     <!-- Remind Passowrd -->
@@ -299,3 +300,5 @@ input[type=text]:placeholder {
 
   </div>
 </div>
+
+

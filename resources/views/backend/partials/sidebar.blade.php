@@ -7,6 +7,8 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
 
+         
+
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{{route('dashboard')}}">
                 <svg class="bi"><use xlink:href="#house-fill"/></svg>
@@ -16,11 +18,27 @@
 
 
             <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('order.entry')}}">
+                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+                Order Entry
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('product.list')}}">
+                <svg class="bi"><use xlink:href="#cart"/></svg>
+                Product Info
+              </a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('/category')}}">
                 <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
                 Category
               </a>
             </li>
+
 
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('/customer')}}">
@@ -29,6 +47,19 @@
               </a>
             </li>
 
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{route('Stock')}}">
+                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+                Stock
+              </a>
+            </li>
+
+
+            
+
+
+
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('/payment')}}">
                 <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
@@ -36,8 +67,7 @@
               </a>
             </li>
 
-            
-
+  
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('/business-setting')}}">
                 <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
@@ -45,23 +75,6 @@
               </a>
             </li>
 
-
-
-
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('order.entry')}}">
-                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-                Order Entry
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('product.list')}}">
-                <svg class="bi"><use xlink:href="#cart"/></svg>
-                Product Info
-              </a>
-            </li>
 
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{url('/sales-executive')}}">
@@ -96,12 +109,7 @@
           <ul class="nav flex-column mb-auto">
             
           
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{route('Stock')}}">
-                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-                Stock
-              </a>
-            </li>
+           
             
 
             <li class="nav-item">
@@ -120,8 +128,10 @@
               <a class="nav-link d-flex align-items-center gap-2" href="{{Route('logout')}}">
                 <svg class="bi"><use xlink:href="#door-closed"/></svg>
                 Sign out
+
               </a>
             </li>
+          
           </ul>
         </div>
       </div>

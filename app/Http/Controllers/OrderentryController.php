@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Http\Orderentry;
-
+use App\Models\customer;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Sell;
+use App\Models\SellDetail;
+use App\Models\Stock;
+use Illuminate\Support\Facades\Mail;
 
 class OrderentryController extends Controller
 {
@@ -21,6 +25,17 @@ class OrderentryController extends Controller
         return view('backend.orderentry',compact('products','myCart'));
 
         
+    }
+    public function Reportlist()
+    {
+        if(request()->has('from_date') && request()->has('to_date'))
+        {
+            $allcustomer = Sell::whereBetween('created_at',[request()->from_date,request()->to_date])->get();
+            return view('backend.report',compact('allcustomer'));
+        }
+        
+        $allcustomer = Sell::all();
+        return view('backend.report',compact('allcustomer'));
     }
 
     public function showProduct($id){
@@ -101,6 +116,87 @@ class OrderentryController extends Controller
         }
     }
 
+    public function placeOrder(Request $request)
+    {
+
+        //dd($request->all());
+        //step1 validation
+    //   $validation=Validator::make($request->all(),[
+    //     'receiver_name'=>'required',
+    //     'email'=>'required|email',
+    //     'address'=>'required',
+    //     'paymentMethod'=>'required|in:cod,online'
+    //     ]);
+
+    // if($validation->fails())
+    // {
+    //     notify()->error($validation->getMessageBag());
+       
+    //     return redirect()->back();
+    // }
+
+
+
+        if( $mycart=session()->get('basket')){
+        
+        
+        //quary for store data into Orders table
+       
+        $order=Sell::create([
+            'receiver_name'=>$request->receiver_name,
+            'receiver_email'=>$request->receiver_email,
+            'receiver_address'=>$request->address,
+            'receiver_mobile'=>$request->receiver_mobile,
+            'payment_method'=>$request->paymentMethod,
+            //'customer_id'=>auth('customerGuard')->user()->id,
+            'total_amount'=>array_sum(array_column($mycart,'subtotal'))
+
+        ]);
+
+        //quary for storing data into Order_details table
+           
+        foreach($mycart as $singleData)
+        {
+          
+            SellDetail::create([
+                'order_id'=>$order->id,
+                'product_id'=>$singleData['product_id'],
+                'product_unit_price'=>$singleData['price'],
+                'product_quantity'=>$singleData['quantity'],
+                'subtotal'=>$singleData['subtotal'],
+            ]);
+
+            $product = Product::find($singleData['product_id']);
+            $product->decrement('quantity',$singleData['quantity']);
+        }
+           
+
+        notify()->success('Order place successfully.');
+
+        //send place order confirmation mail
+
+
+        session()->forget('basket');
+
+        //Mail::to($request->email)->send(new OrderEmail($order));
+        return redirect()->back();
+
+    }
+    else
+        {
+            notify()->success('cart is empty.');
+
+            return redirect()->back();
+
+
+        }
+
+    }
+
+
+
+
+
     public function viewCart()
     {
         //ternary operator (condition) ? statement 1 : statement2
@@ -154,6 +250,14 @@ class OrderentryController extends Controller
     //     return view('backend.productentry',compact('products'));
     
     // }
+
+
+    public function viewInvoice($id)
+    {
+        $order=Sell::with('selldetails')->find($id);
+
+        return view('backend.pages.invoice',compact('order'));
+    }
 
 
 }

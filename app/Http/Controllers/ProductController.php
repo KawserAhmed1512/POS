@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function list()
     {
-        $allProduct=Product::with('category')->paginate(6);
+        $allProduct=Product::with('category')->paginate(8);
        // dd($allProduct);
         return view('backend.productlist',compact('allProduct'));
     }
@@ -37,7 +37,8 @@ class ProductController extends Controller
         'product_name'=>'required',
         'product_price'=>'required|numeric|min:10',
         'product_image'=>'required|file',
-        'category_id'=>'required'
+        'category_id'=>'required',
+        'product_quantity'=>'required'
         
       ]);
 
@@ -66,10 +67,14 @@ class ProductController extends Controller
         'name'=>$request->product_name,
         'price'=>$request->product_price,
         'image'=>$fileName,
-        'category_id'=>$request->category_id
+        'category_id'=>$request->category_id,
+        'quantity'=>$request->product_quantity
+
+        
         
        ]);
 
+        notify()->success('product added successfull');
        return redirect()->route('product.list');
 
     

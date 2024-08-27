@@ -8,9 +8,20 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login(){
-        return view('backend.login');
+        return view('backend.welLog');
 
     }
+
+    public function wel(){
+        return view('backend.welLog');
+
+    }
+
+    public function signup(){
+
+        return view('backend.signup');
+    }
+
 
 
     

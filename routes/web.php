@@ -30,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 
 //log in
 Route::get('/Login',[LoginController::class,'login'])->name('login');
+Route::get('/wel-Login',[LoginController::class,'wel'])->name('wel');
+Route::get('/signup',[LoginController::class,'signup'])->name('signup');
 
 Route::post('/do-login',[LoginController::class,'doLogin'])->name('do.login');
 
@@ -49,18 +51,18 @@ Route::get('/master',[MasterController::class,'master']);
 
 //order entry
 Route::get('/order-entry',[OrderEntryController::class,'orderentry'])->name('order.entry');
-
+Route::post('/order-place',[OrderEntryController::class,'placeOrder'])->name('order.place');
 Route::get('/View-cart',[OrderentryController::class,'viewcart'])->name('View-cart');
 Route::get('/Clear-cart',[OrderentryController::class,'clearCart'])->name('Cart.clear');
 Route::get('/Add-to-cart/{productlist}',[OrderentryController::class,'addToCart'])->name('Add.to.cart');
 Route::get('/Show-product/{productlist}',[OrderentryController::class,'showProduct'])->name('Show.product');
-
+Route::get('/invoice/{id}',[OrderEntryController::class,'viewInvoice'])->name('invoice');
 
 
 //Customer
 
 Route::get('/customer',[CustomerController::class,'list'])->name('customer');
-Route::get('/customer-form',[CustomerController::class,'form'])->name('customer.form');
+
 Route::post('/customer-store',[CustomerController::class,'store'])->name('customer.store');
 
 
@@ -93,7 +95,8 @@ Route::get('/Stock',[StockController::class,'stock'])->name('Stock');
 
 //report
 
-//Route::get('/report',[ReportController::class,'list']);
+
+Route::get('/report',[OrderEntryController::class,'Reportlist'])->name('report');
 
 //Sales-executive
 

@@ -61,9 +61,14 @@
   </thead>
   <tbody>
   @if(session()->has('basket'))
-    @foreach($myCart  as $key=>$product)
+  
+  @php 
+  $i=0;
+  @endphp
+
+    @foreach($myCart as $key=>$product)
     <tr>
-      <th scope="row">{{$key+1}}</th>
+      <th scope="row">{{++$i}}</th>
       <td>{{$product['product_name']}}</td>
       <td>{{$product['quantity']}}</td>
       <td>{{$product['subtotal']}}</td>
@@ -80,19 +85,80 @@
                     {{array_sum(array_column(session()->get('basket'),'subtotal'))}} BDT
                     @else
                     BDT @endif
+
+
                   </p>
+
+
+
+                  <form action="{{route('order.place')}}" method="post">
+                    @csrf
                   <div class="form-group">
                     <lebel for="name">Enter Customer Name</lebel>
-                    <input name="customer_name"type="text" class="form-control" id="name" aria-describedby="emailHelp"
-                  </div>
+                    <input name="receiver_name"type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                   </div>
+
+                   <div class="form-group">
+                    <lebel for="name">Enter Customer email Address</lebel>
+                    <input name="receiver_email"type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                   </div>
 
                   <div class="form-group">
+                    <lebel for="name">Enter Customer Address</lebel>
+                    <input name="address"type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                   </div>
+
+                   <div class="form-group">
                     <lebel for="name">Enter Customer mobile number</lebel>
-                    <input name="customer_name"type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                    <input name="receiver_mobile"type="text" class="form-control" id="name" aria-describedby="emailHelp">
                   </div>
 
 
-                    <button class="btn btn-success">Place Order</button>
+                  <div class="form-check">
+  <input class="form-check-input" type="radio" name="paymentMethod" value="cod" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Cash on Delivery
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="paymentMethod" value="cash" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Cash
+  </label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="paymentMethod" value="Bkash" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Bkash
+  </label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="paymentMethod" value="Nagad" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Nagad
+  </label>
+</div>
+
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="paymentMethod" value="Rocket" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Rocket
+  </label>
+</div>
+
+
+
+
+
+                    <button type="submit" class="btn btn-success">Place Order</button>
+                    </form>
+
+
+
+
                 </div>
             </div>
         </div>

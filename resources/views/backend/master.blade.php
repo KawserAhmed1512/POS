@@ -9,6 +9,9 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Sales System Solution · Bootstrap v5.3</title>
+    @notifyCss
+
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
 
@@ -29,6 +32,12 @@
 
 
     <style>
+
+      #laravel-notify{
+        z-index: 99999999;
+      }
+
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -107,11 +116,14 @@
       }
     </style>
 
-    
+
     <!-- Custom styles for this template -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/5.3/examples/dashboard/dashboard.css" rel="stylesheet">
+  
+
+
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -219,10 +231,9 @@
 
 
 
-
 @include('backend.partials.header')
 
-
+@include('notify::components.notify')
 
 
 
@@ -247,10 +258,12 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Welcome our web link</h1>
+        
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
            
+
+          
           </div>
         
         </div>
@@ -258,7 +271,7 @@
 
       @yield('content')
       
-      
+      @notifyJs
 <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script><script src="https://getbootstrap.com/docs/5.3/examples/dashboard/dashboard.js"></script></body>

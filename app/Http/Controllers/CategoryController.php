@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function list()
     {
-        $allcategory=category::paginate(4);
+        $allcategory=category::paginate(20);
         return view('backend.category',compact('allcategory'));
     }
 
@@ -28,7 +28,7 @@ class CategoryController extends Controller
         $validation=Validator::make($request->all(),[
 
             'name'=>'required',
-            'image'=>'required|file'
+            // 'image'=>'required|file'
 
         ]);
 

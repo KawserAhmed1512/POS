@@ -21,7 +21,14 @@
       <th scope="col">Price</th>
       <th scope="col">Category Name</th>
 
+
+      
+
       <th scope="col">Action</th>
+
+      
+
+
     </tr>
   </thead>
   <tbody>
@@ -44,6 +51,13 @@
   <td>
     {{$product->category->name}}
   </td>
+
+ <td>
+
+ <a class="btn btn-Primary" href="">View</a>
+ <a class="btn btn-success" href="">Edit</a>
+ <a class="btn btn-danger" href="">Delete</a>
+ </td>
 
 </tr>
 
