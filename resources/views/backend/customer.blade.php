@@ -29,6 +29,8 @@
       <td>{{$customer->receiver_mobile}}</td>
       <td>{{$customer->payment_method}}</td>
       <td>{{$customer->total_amount}}</td>
+      <td>{{$customer->status}}</td>
+      
       
 
       
@@ -37,7 +39,7 @@
      
     </td>
     <td>
-        <a href="{{route('invoice',$customer->id)}}" class="btn btn-success" href="">Cencel</a>
+        <a href="{{route('cancel.order',$customer->id)}}" class="btn btn-success" href="">Cencel</a>
      
     </td>
 

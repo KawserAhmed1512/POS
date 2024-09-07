@@ -14,10 +14,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\StockController;
-
-
-
-
+use App\Http\Controllers\OrderlistController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -58,12 +55,13 @@ Route::get('/Add-to-cart/{productlist}',[OrderentryController::class,'addToCart'
 Route::get('/Show-product/{productlist}',[OrderentryController::class,'showProduct'])->name('Show.product');
 Route::get('/invoice/{id}',[OrderEntryController::class,'viewInvoice'])->name('invoice');
 
-
 //Customer
 
 Route::get('/customer',[CustomerController::class,'list'])->name('customer');
 
 Route::post('/customer-store',[CustomerController::class,'store'])->name('customer.store');
+Route::get('/order-cancel/{order_id}',[CustomerController::class,'cancelOrder'])->name('cancel.order');
+
 
 
 //Category
@@ -71,6 +69,8 @@ Route::post('/customer-store',[CustomerController::class,'store'])->name('custom
 Route::get('/category',[CategoryController::class,'list'])->name('category');
 Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
 Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
+
+
 
 //Business Setting
 
@@ -86,6 +86,10 @@ Route::get('/product-list',[ProductController::class,'list'])->name('product.lis
 
 Route::get('/product-create',[ProductController::class,'create'])->name('product.create');
 Route::post('/product-store',[ProductController::class,'store'])->name('product.store');
+Route::get('/product/delete/{p_id}',[ProductController::class,'delete'])->name('product.delete');
+Route::get('/product/edit/{p_id}',[ProductController::class,'edit'])->name('product.edit');
+Route::post('/product/update/{p_id}',[ProductController::class,'update'])->name('product.update');
+
 
 //stock
 

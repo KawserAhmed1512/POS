@@ -2,6 +2,8 @@
 
 @section('content')
 
-<h1> habijabi </h1>
+<h1> Assalamu Alaikum
+    
+</h1>
 
 @endsection 

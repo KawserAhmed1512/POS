@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Orderentry;
+use App\Mail\PlaceorderEmail;
 use App\Models\customer;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -178,7 +179,7 @@ class OrderentryController extends Controller
 
         session()->forget('basket');
 
-        //Mail::to($request->email)->send(new OrderEmail($order));
+        Mail::to($request->receiver_email)->send(new PlaceorderEmail($order));
         return redirect()->back();
 
     }

@@ -80,5 +80,56 @@ class ProductController extends Controller
     
 
     }
+
+    public function delete($id)
+    {
+      $product=Product::find($id);
+      $product->delete();
+
+      notify()->success('Product deleted successfully.');
+      return redirect()->back();
+    }
+
+    public function edit($proid)
+    {
+      $product=Product::find($proid);
+      $allCategory=Category::all();
+
+      return view('backend.pages.product_edit',compact('allCategory','product'));
+
+    }
+
+    public function Update(Request $request,$proid)
+    {
+      $product=Product::find($proid);
+      $product->Update([
+        'name'=>$request->product_name,
+        'price'=>$request->product_price,
+        'quantity'=>$request->product_quantity
+      ]);
+
+
+
+      notify()->success('product updated successfully.');
+      return redirect()->route('product.list');
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 

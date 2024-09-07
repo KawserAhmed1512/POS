@@ -55,8 +55,9 @@
  <td>
 
  <a class="btn btn-Primary" href="">View</a>
- <a class="btn btn-success" href="">Edit</a>
- <a class="btn btn-danger" href="">Delete</a>
+ <a href="{{route('product.delete',$product->id)}}"class="btn btn-danger">Delete</a>
+
+ <a href="{{route('product.edit',$product->id)}}"class="btn btn-success">Edit</a>
  </td>
 
 </tr>

@@ -39,7 +39,7 @@ class PlaceorderEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'backend.page.mail.PlaceorderEmail',
+            view: 'backend.pages.mail.placeorderEmail',
             with:['placeorder'=>$this->newOrder],
         );
     }

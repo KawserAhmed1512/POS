@@ -24,6 +24,7 @@
               </a>
             </li>
 
+        
 
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{route('product.list')}}">
@@ -32,12 +33,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="{{url('/category')}}">
-                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
-                Category
-              </a>
-            </li>
+            
 
 
             <li class="nav-item">
@@ -57,7 +53,12 @@
 
 
             
-
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{url('/category')}}">
+                <svg class="bi"><use xlink:href="#file-earmark-text"/></svg>
+                Category
+              </a>
+            </li>
 
 
             <li class="nav-item">
