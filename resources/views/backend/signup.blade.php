@@ -270,19 +270,20 @@ section {
    <div class="container"> 
     <div class="form"> 
       <h2>Registration</h2>
-      <form action="">
+      <form action="{{route('regestration')}}" method="post">
+        @csrf
         <div class="inputBx">
-          <input type="text" required="required">
+          <input type="text" name="user_name" required="required">
           <span>Name</span>
           <i class="fas fa-user-circle"></i>
         </div>
         <div class="inputBx">
-          <input type="text" required="required">
+          <input type="text" name="user_email" required="required">
           <span>Email</span>
           <i class="fas fa-user-circle"></i>
         </div>
         <div class="inputBx">
-          <input type="text" required="required">
+          <input type="text" name="user_roll" required="required">
           <span>Roll</span>
           <i class="fas fa-user-circle"></i>
         </div>
@@ -299,7 +300,8 @@ section {
           <i class="fas fa-key"></i>
         </div>
         <div class="inputBx">
-          <input type="submit" value="Sign Up" disabled> 
+          <button type="submit">SignUp</button>
+
         </div>
       </form>
       <p>Already have an account <a href="{{route('wel')}}">login</a></p>

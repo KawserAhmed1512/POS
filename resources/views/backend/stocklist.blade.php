@@ -23,7 +23,7 @@
 
       <th scope="col">Quantity</th>
 
-      <th scope="col">Action</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -48,11 +48,6 @@
   
 
 
-  <td>
-        
-      <a class="btn btn-info" href="">Edit</a>
-      <a class="btn btn-danger" href="">Delete</a>
-    </td>
       
     
       

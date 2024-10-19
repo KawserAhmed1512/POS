@@ -52,7 +52,8 @@
                           
 
                             <th class="right">Product Name</th>
-                            <th class="center">Qty</th>
+                            <th class="right">Price</th>
+                            <th class="center">Quantity</th>
                             <th class="right">Subtotal</th>
                         </tr>
                     </thead>

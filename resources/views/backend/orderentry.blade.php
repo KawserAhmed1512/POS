@@ -24,9 +24,14 @@
                         <div class="card product-card">
                             <img src="{{url('/uploads/'.$product->image)}}" class="card-img-top" alt="Product 1">
                             <div class="card-body">
-                                <h5 class="card-title">{{$product->name}}</h5>
+                                <h5 class="card-title">{{$product->name}}({{$product->quantity}})</h5>
                                 <p class="card-text">{{$product->price}} BDT</p>
+                                @if($product->quantity > 0 )
                                 <a href="{{route('Add.to.cart',$product->id)}}" class="btn btn-primary">Add to Cart</a>
+                                
+                                @else
+                                <p style="color:red">Stock Out</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -40,9 +45,9 @@
 
             <!-- Cart Summary Section -->
             <div class="col-md-4">
-                <div class="cart-summary">
-
-                    <h4>Cart Summary</h4>
+                <div class="cart-summary row">
+                  <div class="col-md-6">
+                  <h4>Cart Summary</h4>
                     
                     <p><strong>Item :</strong>
                     @if(session()->has('basket'))
@@ -50,6 +55,12 @@
                     @else
                     0item(s) @endif
                   </p>
+                  </div>
+                  <div class="col-md-6">
+                  <a class="btn btn-danger" href="{{route('cart.clear')}}">Clear Cart</a>
+                  </div>
+
+                   
                   <table class="table">
   <thead>
     <tr>
@@ -70,8 +81,17 @@
     <tr>
       <th scope="row">{{++$i}}</th>
       <td>{{$product['product_name']}}</td>
-      <td>{{$product['quantity']}}</td>
+      <td>
+        <form action="{{route('update.cart.qty',$key)}}" method="post">
+          @csrf
+        <input required name="quantity" type="number" value="{{$product['quantity']}}">
+        <button type="submit" class="btn btn-success">Update</button>
+        </form>
+      </td>
       <td>{{$product['subtotal']}}</td>
+      <td>
+        <a style="color:red" href="{{route('remove.item',$key)}}"> cancel </a>
+      </td>
     </tr>
     @endforeach
     @endif

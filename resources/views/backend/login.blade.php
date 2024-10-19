@@ -284,7 +284,7 @@ input[type=text]:placeholder {
     </div>
 
     <!-- Login Form -->
-    <form action= method="post">
+    <form>
 
     @csrf
       <input type="text" class="fadeIn second" name="email" placeholder="login">

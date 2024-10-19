@@ -9,7 +9,6 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ReturnController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\adminController;
@@ -29,8 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/Login',[LoginController::class,'login'])->name('login');
 Route::get('/wel-Login',[LoginController::class,'wel'])->name('wel');
 Route::get('/signup',[LoginController::class,'signup'])->name('signup');
-
+Route::post('/regestration',[LoginController::class,'regestration'])->name('regestration');
 Route::post('/do-login',[LoginController::class,'doLogin'])->name('do.login');
+
 
 //signout
 
@@ -50,7 +50,10 @@ Route::get('/master',[MasterController::class,'master']);
 Route::get('/order-entry',[OrderEntryController::class,'orderentry'])->name('order.entry');
 Route::post('/order-place',[OrderEntryController::class,'placeOrder'])->name('order.place');
 Route::get('/View-cart',[OrderentryController::class,'viewcart'])->name('View-cart');
-Route::get('/Clear-cart',[OrderentryController::class,'clearCart'])->name('Cart.clear');
+Route::get('/Clear-cart',[OrderentryController::class,'clearCart'])->name('cart.clear');
+Route::get('/remove/item/{id}',[OrderentryController::class,'removeItem'])->name('remove.item');
+Route::post('/update/cart/qty/{id}',[OrderentryController::class,'updateCart'])->name('update.cart.qty');
+
 Route::get('/Add-to-cart/{productlist}',[OrderentryController::class,'addToCart'])->name('Add.to.cart');
 Route::get('/Show-product/{productlist}',[OrderentryController::class,'showProduct'])->name('Show.product');
 Route::get('/invoice/{id}',[OrderEntryController::class,'viewInvoice'])->name('invoice');
@@ -74,8 +77,8 @@ Route::post('/category-store',[CategoryController::class,'store'])->name('catego
 
 //Business Setting
 
-Route::get('/business-setting',[BusinessController::class,'list']);
-
+Route::get('/business-setting',[BusinessController::class,'settings'])->name('admin.business.settings');
+Route::post('/business-setting',[BusinessController::class,'settingSubmit'])->name('settings.submit');
 //Admin Panel
 
 Route::get('/admin',[AdminController::class,'form']);
@@ -110,7 +113,7 @@ Route::get('/sales-executive',[SalesController::class,'list']);
 
 //payment
 
-Route::get('/payment',[PaymentController::class,'list']);
+
 
 //Retunr Product
 

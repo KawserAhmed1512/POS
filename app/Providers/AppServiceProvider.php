@@ -3,7 +3,8 @@
 namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use App\Models\Category;
-
+use App\Models\Setting;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,8 +23,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+        $all_categories=[];
+        $app_setting=[];
 
-        $all_categories=Category::all();
-        view()->share('categories',$all_categories);
+        if(Schema::hasTable('categories') and Schema::hasTable('settings') )
+        {
+            $all_categories=Category::all();
+            $app_setting=Setting::find(1);
+            view()->share('categories',$all_categories);
+        view()->share('setting',$app_setting);
+        }
+        
     }
 }    

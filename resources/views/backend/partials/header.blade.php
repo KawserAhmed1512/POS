@@ -1,7 +1,9 @@
 <header style="z-index: -1;" class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">
-    <img src="{{url('/REtail.png')}}" alt="" style="width: 80px;">
+    <img src="{{url('/logo.png')}}" alt="" style="width: 80px;">
   </a>
+
+  <!-- <h1 class="text-white me-2" >S.K Traders</h1>   -->
 
 
 

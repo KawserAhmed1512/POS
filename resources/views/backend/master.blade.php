@@ -35,7 +35,24 @@
 
       #laravel-notify{
         z-index: 99999999;
+
+
       }
+
+
+ 
+          /* back colour  */
+
+
+        body{
+
+          background-color: ;
+        }
+          
+
+            
+        
+
 
 
       .bd-placeholder-img {

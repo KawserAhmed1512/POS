@@ -38,10 +38,7 @@
         <a href="{{route('invoice',$customer->id)}}" class="btn btn-success" href="">View</a>
      
     </td>
-    <td>
-        <a href="{{route('cancel.order',$customer->id)}}" class="btn btn-success" href="">Cencel</a>
-     
-    </td>
+    
 
     </tr>
 

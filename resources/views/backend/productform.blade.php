@@ -31,7 +31,7 @@
   </div>
   <div class="form-group">
     <label for="p_quantity">Product quantity:</label>
-    <input required name="product_quantity" type="text" class="form-control" id="p_quantity" placeholder="Product quantity">
+    <input required name="product_quantity" type="number" min="1" class="form-control" id="p_quantity" placeholder="Product quantity">
   </div>
 
 

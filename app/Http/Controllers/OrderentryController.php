@@ -15,6 +15,43 @@ class OrderentryController extends Controller
 {
 
 
+    public function removeItem($id)
+    {
+        $cart=session()->get('basket');
+
+        unset($cart[$id]);
+
+        session()->put('basket',$cart);
+        notify()->success('Item removed');
+        return redirect()->route('order.entry');
+
+    }
+
+
+    public function updateCart(Request $request,$id)
+    {
+
+        $product=Product::find($id);
+     
+
+        if($product->quantity > $request->quantity)
+        {
+            $cart=session()->get('basket');
+
+            $cart[$id]['quantity']=$request->quantity;
+            $cart[$id]['subtotal']=$request->quantity * $cart[$id]['price'] ;
+    
+            session()->put('basket',$cart);
+            notify()->success('Item Updated');
+            return redirect()->route('order.entry');
+        }
+
+        notify()->error('Product Stock not available.');
+        return redirect()->back();
+
+    }
+
+
 
 
     public function orderentry(){
@@ -63,24 +100,33 @@ class OrderentryController extends Controller
         $product=Product::find($pId);
         $myCart=session()->get('basket');
         // dd($myCart);
+
+        
         //step 1: cart empty
         if(empty($myCart))
         {
-            //action: add to cart
-            $cart[$product->id]=[
-                //key=>value
-                'product_id'=>$product->id,
-                'product_name'=>$product->name,
-                'price'=>$product->price,
-                'quantity'=>1,
-                'subtotal'=>1 * $product->price,
-                'image'=>$product->image
-            ];
 
-            session()->put('basket',$cart);
+            if($product->quantity > 0)
+            {
+                //action: add to cart
+                $cart[$product->id]=[
+                    //key=>value
+                    'product_id'=>$product->id,
+                    'product_name'=>$product->name,
+                    'price'=>$product->price,
+                    'quantity'=>1,
+                    'subtotal'=>1 * $product->price,
+                    'image'=>$product->image
+                ];
 
-            notify()->success('Product added to cart.');
+                session()->put('basket',$cart);
+
+                notify()->success('Product added to cart.');
+                return redirect()->back();
+            }
+            notify()->error('Product Stock out.');
             return redirect()->back();
+           
         }else{
 
             if(array_key_exists($pId,$myCart))
@@ -88,6 +134,9 @@ class OrderentryController extends Controller
                 // dd($myCart[$pId]);
                 //step 2: quantity update, subtotal update
                //q=1,sub=300
+
+               if($product->quantity >= ($myCart[$pId]['quantity'] + 1))
+               {
                 $myCart[$pId]['quantity'] = $myCart[$pId]['quantity'] + 1;
                 $myCart[$pId]['subtotal'] = $myCart[$pId]['quantity'] * $myCart[$pId]['price'];
 
@@ -95,10 +144,16 @@ class OrderentryController extends Controller
 
                 notify()->success('Quantity updated.');
                 return redirect()->back();
+            }
+            notify()->error('Product Stock not available.');
+            return redirect()->back();
 
 
             }
             else{
+
+                if($product->quantity > 0)
+                {
                 //step 3: add to cart
                 $myCart[$product->id]=[
                     'product_id'=>$product->id,
@@ -113,6 +168,10 @@ class OrderentryController extends Controller
                 session()->put('basket',$myCart);
                 notify()->success("Product Added to Cart");
                 return redirect()->back();
+            }
+            notify()->error('Product Stock not available.');
+            return redirect()->back();
+
             }
         }
     }
